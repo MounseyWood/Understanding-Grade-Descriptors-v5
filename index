@@ -72,7 +72,7 @@ Copyright (c) 2025 Kingston University. All rights reserved.
         - Border Color: #ddd (lighter grey)
         */
         body {
-            font-family: Inter, sans-serif; /* CUSTOMIZE: Font family */
+            font-family: Inter, Arial, sans-serif; /* Added Arial as a fallback */
             background-color: #ffffff; /* CUSTOMIZE: Main background colour */
             padding: 0;
             margin: 0;
@@ -96,6 +96,8 @@ Copyright (c) 2025 Kingston University. All rights reserved.
             background-color: white;
             padding: 30px; /* CUSTOMIZE: Inner padding */
             margin-bottom: 30px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         /* CUSTOMIZE: Header section styling */
         .header {
@@ -141,6 +143,7 @@ Copyright (c) 2025 Kingston University. All rights reserved.
         */
         table {
             width: 100%;
+            max-width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
