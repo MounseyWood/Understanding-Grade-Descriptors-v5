@@ -27,7 +27,7 @@ Copyright (c) 2025 Kingston University. All rights reserved.
     - Update the title tag to match your specific program or course
     - Modify meta tags if you need to add additional SEO information
     -->
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BA (Hons) Fashion - Understanding Grade Descriptors</title>
     <!-- 
@@ -70,8 +70,7 @@ Copyright (c) 2025 Kingston University. All rights reserved.
         */
         body {
             font-family: Inter, sans-serif; /* CUSTOMIZE: Font family */
-            ms-text-size-adjust: 100%;
-            webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
             background-color: #ffffff; /* CUSTOMIZE: Main background colour */
             padding: 0;
             margin: 0;
