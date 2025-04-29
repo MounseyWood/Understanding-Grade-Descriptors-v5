@@ -1,146 +1,91 @@
 <!DOCTYPE html>
-<!--
-=======================================================================
-Kingston University London, Kingston School of Art, School of Design.
-Learning Outcomes, Feedback and Assessment Knowledge Base
-Department of Fashion
-BA (Hons) Fashion program - Understanding Grade Descriptors
-=======================================================================
-Author: Matthew Mounsey-Wood
-Email: m.mounsey-wood@kingston.ac.uk
-Created: April 29, 2025
-Last Modified: April 29, 2025
-Version: 1.0
-
-Description:
-An interactive tool for understanding grade descriptors on the
-BA (Hons) Fashion program at Kingston University London.
-
-Copyright (c) 2025 Kingston University. All rights reserved.
-=======================================================================
 <html lang="en">
 <head>
-     <!-- 
-    ==============================================
-    CUSTOMIZATION GUIDE - DOCUMENT METADATA
-    ==============================================
-    - Update the title tag to match your specific program or course
-    - Modify meta tags if you need to add additional SEO information
-    -->
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BA (Hons) Fashion - Understanding Grade Descriptors</title>
-    <!-- 
-    ==============================================
-    EXTERNAL DEPENDENCIES
-    ==============================================
-    - These scripts load React and Babel from CDN
-    - Only modify these if you need to update to newer versions
-    -->
-     <!-- Add proper Inter font import -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Load React -->
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>  
-    <!-- Load Babel to handle JSX -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Add proper Inter font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load React - Note: using specific versions with integrity hash -->
+    <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" 
+            integrity="sha384-zOUlY87Xr2gUmXsN9+yKoMOcGnwy2aRVn+UXgbJXLt5x9v2CWtVgHhLZU0ojCmhF"
+            referrerpolicy="no-referrer"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"
+            integrity="sha384-vpnfQB+9USzGZHHWcJCU+va7lsfknX4wRl1DCDN/eFJCpU+h/FXONrnt/Wcd4qCa"
+            referrerpolicy="no-referrer"></script>
+    
+    <!-- Load Babel Standalone - being explicit about version -->
+    <script src="https://unpkg.com/@babel/standalone@7.18.13/babel.min.js"
+            integrity="sha384-76CoaeXi5mDGiQxZVXph61nxaV2GgBmzOCqAVfuHCuGN0s7PLIbkFiQXnrHhLbk2"
+            referrerpolicy="no-referrer"></script>
     
     <style>
-     /* 
-        ==============================================
-        CUSTOMIZATION GUIDE - STYLING - FROM KSA CANVAS GUIDE (KU)
-        ==============================================
-         * @author Matthew Mounsey-Wood <m.mounsey-wood@kingston.ac.uk>
-         * @created April 29, 2025
-         * @version 1.0
-         * @modified April 29, 2025 - Fixed browser compatibility issues
-         
-        The styles below control the appearance of the application.
-        You can modify colours, spacing, fonts, etc. to match your branding.
-        
-        COLOR SCHEME
-        - Main Background: #ffffff (white)
-        - Text Color: #333 (dark grey)
-        - Accent Color: #FFF200 (yellow)
-        - Table Header Background: #f1f1f1 (light grey)
-        - Border Color: #ddd (lighter grey)
-        */
         body {
-            font-family: Inter, Arial, sans-serif; /* Added Arial as a fallback */
-            background-color: #ffffff; /* CUSTOMIZE: Main background colour */
+            font-family: Inter, Arial, sans-serif; 
+            background-color: #ffffff;
             padding: 0;
             margin: 0;
-            color: #333; /* CUSTOMIZE: Main text colour */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-       /* CUSTOMIZE: Content container width and spacing */
-        .ku-content-wrapper {
-            max-width: 1200px; /* CUSTOMIZE: Adjust for wider/narrower layout */
-            margin: 0 auto;
-            padding: 20px;
+            color: #333;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
-        /* CUSTOMIZE: Main content area styling */
-        .ku-content {
-            background-color: white;
-            padding: 30px; /* CUSTOMIZE: Inner padding */
-            margin-bottom: 30px;
+        
+        .ku-content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-        /* CUSTOMIZE: Header section styling */
+        
+        .ku-content {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
         .header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 3px solid #aaaaaa; /* CUSTOMIZE: Separator line */
+            border-bottom: 3px solid #aaaaaa;
             padding-bottom: 20px;
         }
-         /* CUSTOMIZE: Button styling */
+        
         .ku-button {
             display: inline-block;
-            background-color: #FFF200; /* CUSTOMIZE: Button colour */
-            color: #000; /* CUSTOMIZE: Button text colour */
+            background-color: #FFF200;
+            color: #000;
             font-weight: bold;
             font-size: 1rem;
             padding: 8px 15px;
-            border-radius: 0; /* CUSTOMIZE: Button corner roundness */
+            border-radius: 0;
             text-decoration: none;
-            margin: 10px 0;
+            margin: 10px 5px;
             border: none;
             cursor: pointer;
             transition: background-color 0.2s;
         }
         
         .ku-button:hover {
-            background-color: #FFF200; /* CUSTOMIZE: Button hover colour */
+            background-color: #E6D900;
         }
-         /* CUSTOMIZE: Footer styling */
+        
         .footer {
             text-align: center;
             margin-top: 30px;
             padding: 20px;
-            color: #666; /* CUSTOMIZE: Footer text colour */
+            color: #666;
             font-size: 0.9rem;
-            border-top: 1px solid #eee; /* CUSTOMIZE: Footer separator */
+            border-top: 1px solid #eee;
         }
         
-       /* 
-        ==============================================
-        CUSTOMIZATION GUIDE - TABLE STYLING - FROM KSA CANVAS GUIDE (KU)
-        ==============================================
-        These styles control the appearance of data tables.
-        */
         table {
             width: 100%;
             max-width: 100%;
@@ -149,15 +94,15 @@ Copyright (c) 2025 Kingston University. All rights reserved.
         }
         
         th {
-            background-color: #f1f1f1; /* CUSTOMIZE: Table header background */
+            background-color: #f1f1f1;
             text-align: left;
             padding: 12px;
-            border: 1px solid #ddd; /* CUSTOMIZE: Table border color */
+            border: 1px solid #ddd;
         }
         
         td {
             padding: 12px;
-            border: 1px solid #ddd; /* CUSTOMIZE: Table border color */
+            border: 1px solid #ddd;
             vertical-align: top;
         }
         
@@ -166,435 +111,477 @@ Copyright (c) 2025 Kingston University. All rights reserved.
             font-weight: bold;
             margin-bottom: 10px;
         }
+        
+        .grade-btn {
+            padding: 8px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .grade-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .grade-btn.active {
+            outline: 2px solid #666;
+            outline-offset: 2px;
+        }
+        
+        .grade-detail {
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0;
+        }
+        
+        .matrix-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .grade-distinction { background-color: #80FF80; color: black; }
+        .grade-first { background-color: #BFFF80; color: black; }
+        .grade-upper-second { background-color: #FFFF80; color: black; }
+        .grade-lower-second { background-color: #FFE880; color: black; }
+        .grade-third { background-color: #FFCC80; color: black; }
+        .grade-marginal-fail { background-color: #FF9980; color: black; }
+        .grade-fail { background-color: #FF8080; color: black; }
+        
+        .note {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #f1f1f1;
+            border-left: 4px solid #FFF200;
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .improvements {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .ku-content {
+                padding: 15px;
+            }
+            
+            .ku-button {
+                margin: 5px 0;
+                display: block;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- 
-    ==============================================
-    MAIN CONTENT CONTAINER
-    ==============================================
-    This is the main wrapper for all content.
-    -->
     <div class="ku-content-wrapper">
-          <!-- 
-        ==============================================
-        CONTENT SECTION
-        ==============================================
-        Contains the header and React application.
-        -->
         <div class="ku-content">
-            <!-- 
-            ==============================================
-            HEADER SECTION
-            ==============================================
-            CUSTOMIZATION:
-            - Update the .png source to your saved image path
-            - Modify the title and descriptive text
-            -->
             <div class="header">
-                <img src="understanding_grade_descriptors_BA_Fashion.png" alt="Kingston School of Art Logo" class="w-64 sm:w-72 md:w-80 lg:w-96 mb-6 mx-auto block object-contain">
-                <h1 class="text-2xl font-bold mb-4">Understanding Grade Descriptors</h1>
+                <img src="https://raw.githubusercontent.com/your-username/your-repo/main/understanding_grade_descriptors_BA_Fashion.png" 
+                     alt="Kingston School of Art Logo" 
+                     style="max-width: 300px; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
+                <h1 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Understanding Grade Descriptors</h1>
                 <p>This interactive guide aims to help you understand the grade descriptors used to assess your work on the BA (Hons) Fashion program. Click on each grade band to see what tutors look for, and to understand the key differences between grade bands. This will help you in your efforts to achieve higher grades, through identifying specific areas for improvement.</p>
             </div>
-            <!-- 
-            ==============================================
-            REACT APPLICATION CONTAINER
-            ==============================================
-            This div is where the React application will be mounted.
-            Do not modify this div's ID.
-            -->
-            <div id="grade-descriptors-app"></div>
+            
+            <div id="grade-descriptors-app">
+                <!-- React content will be rendered here -->
+                <p style="text-align: center; padding: 20px;">Loading grade descriptors...</p>
+            </div>
         </div>
-         <!-- 
-        ==============================================
-        FOOTER SECTION
-        ==============================================
-        CUSTOMIZATION:
-        - Update the text with your Kingston University school faculty and program name
-        - Modify the copyright information to the year of issue
-        -->
+        
         <div class="footer">
             <p>Kingston School of Art - BA (Hons) Fashion Program - Learning Outcomes, Feedback and Assessment Knowledge Base</p>
             <p>© 2025 Kingston University</p>
         </div>
     </div>
-    
-    <script type="text/babel">
-        // Import useState from React
+
+    <!-- Using type="text/babel" with a data-presets attribute for GitHub Pages compatibility -->
+    <script type="text/babel" data-presets="react">
+        // Use React hooks
         const { useState } = React;
-     /**
-         * ==============================================
-         * GRADE DESCRIPTORS COMPONENT
-         * ==============================================
-         * This is the main React component that powers the interactive guide.
-         * 
-         * CUSTOMIZATION GUIDE:
-         * 1. Default selected grade: Change 'first-plus' in useState() to another grade ID
-         * 2. Grade bands: Add, remove, or modify entries in the 'grades' array
-         * 3. Grade criteria: Modify the 'qualities' array within each grade object
-         */
+        
+        // Main component
         const GradeDescriptors = () => {
-               // State for tracking the currently selected grade and UI view toggles
-          // CUSTOMIZE: Change 'first-plus' to set a different default selected grade
-          const [activeGrade, setActiveGrade] = useState('first-plus');
-          const [showMatrix, setShowMatrix] = useState(false);
-          /**
-           * ==============================================
-           * GRADE DATA
-           * ==============================================
-           * This array contains all the grade bands and their descriptions.
-           *
-           * @author Matthew Mounsey-Wood <m.mounsey-wood@kingston.ac.uk>
-           * @created April 29, 2025
-           * @version 1.0
-           * Please note, the 'School of Design Curriculum Framework', drafted March 2025 has been used to create this document.
-           * 
-           * CUSTOMIZATION GUIDE:
-           * - To add a new grade band: Copy an existing object and modify all properties
-           * - To change a grade band: Modify the relevant object properties
-           * - Required properties for each grade:
-           *   - id: Unique identifier (used for selection)
-           *   - title: Display name
-           *   - range: Percentage range text
-           *   - color: Background color - a simple traffic-light system from high to low, green through amber to red has been employed, (Tailwind class or hex)
-           *   - textColor: Text color (Tailwind class)
-           *   - qualities: Array of assessment criteria objects
-           */
-          const grades = [
-            {
-              id: 'first-plus',
-              title: 'Distinction',
-              range: '85% and above',
-              color: 'bg-[#80FF80]', // CUSTOMIZE: Color for this grade band
-              textColor: 'text-black',
-              qualities: [
-                  // CUSTOMIZE: Add, remove or modify assessment criteria here
-                  { title: 'Research & Analysis', description: 'Your tutors are looking for exceptional research that goes far beyond expectations. You should demonstrate original thinking and provide strong evidence to support your ideas. Your work should show deep understanding of relevant contexts and critically analyze sources with comprehensive evidence.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see innovative approaches that challenge conventional thinking. Your technical skills should be excellent, with clear evidence of creative risk-taking and problem-solving. Your work should show a strong connection between concept development and making/production techniques.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect extremely clear and professional presentation that convincingly communicates your ideas. Your work should show you understand your audience\'s needs and have carefully selected and refined your materials to create maximum impact.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you can integrate your personal identity into your professional practice. You should demonstrate that you can work productively on your own, collaborate effectively in teams, and take leadership roles when needed. You should take full responsibility for your own learning and development.' }
-             // Additional qualities would go here...
-            ]
-            },
-            {
-              id: 'first',
-              title: 'First Class',
-              range: '70-84%',
-              color: 'bg-[#BFFF80]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors are looking for extensive, well-informed research from diverse sources. You should demonstrate independent thinking in how you analyze your findings. Your work should show strong critical examination of relevant contexts with clear evaluation of sources.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see how you connect your ideas with strong technical skills to explore unfamiliar concepts. You should demonstrate creative risk-taking and show how your critical evaluation has informed your design decisions. Your technical execution should be excellent.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect your work to engage and persuade your audience effectively. You should demonstrate sensitivity in how you select and present your materials. Your presentation should show a clear understanding of audience needs and contextual factors.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you take full responsibility for your learning and understand both the possibilities and requirements of your subject. You should demonstrate that you can work effectively independently, as part of a team, or in leadership roles.' }
-              ]
-            },
-            {
-              id: 'upper-second',
-              title: 'Upper Second (2:1)',
-              range: '60-69%',
-              color: 'bg-[#FFFF80]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors are looking for wide-ranging research from good quality sources. You should demonstrate some independent thinking in your analysis. Your work should show accurate evaluation of relevant contexts and sources with clear personal insights.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see evidence that you\'re willing to take creative risks and use your own critical evaluation to inform your process and technique. Your technical skills should be consistently applied and show good proficiency.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect your presentation to show good awareness of audience and context. You should demonstrate good judgment in how you select and organize your materials, following appropriate conventions while adding your personal touch.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence of self-directed reflection and planning in your work. You should show that you understand the possibilities within your subject area and can work well either independently or collaboratively.' }
-             ]
-            },
-            {
-              id: 'lower-second',
-              title: 'Lower Second (2:2)',
-              range: '50-59%',
-              color: 'bg-[#FFE880]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors are looking for accurate and appropriate research covering the key elements of your project. Your analysis of context and interpretation of sources should be mostly accurate, though may have some gaps or inconsistencies.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see that you\'ve explored different materials and processes in your work. Your technical skills should be consistently applied, with some evidence that you\'ve critically evaluated your own work during the process.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect your work to be presented with good organization and a clear structure, though it may not always fully consider the audience. You should show good judgment in selecting and organizing materials to present your ideas.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you\'re actively working to develop your understanding and using reflection to improve your work. You should demonstrate that you can work productively either alone or as part of a team.' }
-              ]
-            },
-            {
-              id: 'third',
-              title: 'Third Class',
-              range: '40-49%',
-              color: 'bg-[#FFCC80]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors are looking for research from standard sources that covers the basics of your topic. You should show basic knowledge and understanding of required skills, though your interpretation may not always be accurate or in-depth.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see that you can work with established ideas, materials, and processes. Your technical skills should be adequate, though they may not always be consistently applied throughout your work.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect adequate presentation that follows established conventions, though it may lack professional polish. Your work should communicate basic ideas but might not fully engage the audience.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for some awareness of your subject area and your personal strengths, though your reflection and planning may not be consistently applied. You should be able to work either independently or collaboratively.' }
-             ]
-            },
-            {
-              id: 'marginal-fail',
-              title: 'Marginal Fail',
-              range: '35-39%',
-              color: 'bg-[#FF9980]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors are looking for more source information than is currently evidenced in your work. You need to show greater knowledge and understanding of the required skills and practices for this level of study.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors want to see more evidence of technique and exploration of alternatives. Your methods need to be more accurate and appropriate to solve even straightforward problems in your work.' },
-                { title: 'Communication & Presentation', description: 'Your tutors expect more effective use of media and communication conventions in presenting your ideas. Your presentation skills need development to meet the requirements for this level of study.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors are looking for more awareness of your subject and personal strengths. You need to show more evidence of reflection, planning, and application. Your ability to work productively individually or in a team needs further development.' }
-           ]
-            },
-            {
-              id: 'fail',
-              title: 'Fail',
-              range: '0-34%',
-              color: 'bg-[#FF8080]',
-              textColor: 'text-black',
-              qualities: [
-              { title: 'Research & Analysis', description: 'Your tutors need to see evidence of source information in your work. You must demonstrate knowledge and understanding of the required skills and practices for this level of study.' },
-                { title: 'Experimentation & Practice', description: 'Your tutors expect to see evidence of technical skills and exploration of alternatives. You need to demonstrate adequate application of methods to meet basic requirements.' },
-                { title: 'Communication & Presentation', description: 'Your tutors require effective use of media and communication conventions in presenting your ideas. Your presentation skills must meet minimum requirements for this level of study.' },
-                { title: 'Personal & Professional Development', description: 'Your tutors need to see evidence of awareness of your subject area and personal strengths. You must demonstrate some reflection, planning, and application, and show that you can work productively either individually or in a team.' }
-              ]
-             // Additional grade bands would go here...
-            }
-          ];
-          
-          // Include all grade levels for the matrix popup
-          const matrixGrades = [
-            grades[0], // Distinction
-            grades[1], // First Class
-            grades[2], // Upper Second (2:1)
-            grades[3], // Lower Second (2:2)
-            grades[4], // Third Class
-            grades[5], // Marginal Fail
-            grades[6]  // Fail
-          ];
-          
-          const activeGradeData = grades.find(grade => grade.id === activeGrade);
-          
-          return (
-            <div className="max-w-4xl mx-auto p-0">
-              <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                {grades.map(grade => (
-                  <button
-                    key={grade.id}
-                    className={`px-4 py-2 rounded-none font-medium text-base transition-all ${
-                      activeGrade === grade.id ? 
-                      `${grade.color} ${grade.textColor} ring-2 ring-offset-2 ring-gray-400` : 
-                      'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                    onClick={() => setActiveGrade(grade.id)}
-                  >
-                    {grade.range}
-                  </button>
-                ))}
-              </div>
-              
-              <div className={`${activeGradeData.color} ${activeGradeData.textColor} p-6 rounded-none mb-6`}>
-                <h2 className="text-xl font-bold mb-2">{activeGradeData.title} ({activeGradeData.range})</h2>
-                <p className="text-lg mb-4">Overall Quality: {
-                  activeGrade === 'first-plus' ? 'Outstanding' :
-                  activeGrade === 'first' ? 'Excellent' :
-                  activeGrade === 'upper-second' ? 'Very Good' :
-                  activeGrade === 'lower-second' ? 'Good' :
-                  activeGrade === 'third' ? 'Satisfactory' :
-                  activeGrade === 'marginal-fail' ? 'Unsatisfactory' : 'Poor'
-                }</p>
-              </div>
-              
-              <table>
-                <caption>
-                  <h3 className="text-xl font-bold mb-2">Assessment Criteria</h3>
-                </caption>
-                <tbody>
-                  {activeGradeData.qualities.map((quality, index) => (
-                    <tr key={index}>
-                      <th style={{width: "25%"}}>{quality.title}</th>
-                      <td>{quality.description}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              
-              <div className="mt-6 p-4 bg-gray-50 rounded-none border border-gray-200">
-                <h3 className="font-bold mb-2">How to move up to the next grade band:</h3>
-                <ul className="list-disc pl-5 space-y-2">
-                  {activeGrade === 'fail' && (
-                    <div>
-                      <li>Research: Start gathering information from reliable sources and include these references in your work. Build basic knowledge of key concepts and practices.</li>
-                      <li>Experimentation: Try different approaches and techniques rather than sticking with one method. Document your process, even when things don't work out.</li>
-                      <li>Communication: Focus on basic presentation skills—clean layouts, clear labels, and organized materials. Follow basic formatting guidelines for all submissions.</li>
-                      <li>Development: Attend all sessions and demonstrate engagement with feedback. Show that you're trying to apply advice from tutors in your revised work.</li>
-                      <li>Process: Keep a simple reflective journal documenting what you're learning and areas you find challenging.</li>
-                   </div>
-                  )}
-                  {activeGrade === 'marginal-fail' && (
-                    <div>
-                      <li>Research: Expand your sources beyond the most obvious ones. For each project, aim to find at least 3-5 different references and explain why they're relevant.</li>
-                      <li>Experimentation: Demonstrate that you've tried multiple approaches before settling on a final direction. Show "what if" explorations in your development work.</li>
-                      <li>Communication: Improve the consistency and professionalism of your presentations. Pay attention to details like typography, layout, and image quality.</li>
-                      <li>Development: Begin to analyze your own strengths and weaknesses. Create simple action plans that show how you're addressing areas that need improvement.</li>
-                      <li>Process: Show evidence of planning and time management. Include research, development, and refinement stages in your project timeline.</li>
-                    </div>
-                  )}
-                  {activeGrade === 'third' && (
-                    <div>
-                      <li>Research: Move beyond describing your sources to analyzing them. Ask questions like "Why is this relevant?" and "How does this connect to my project?"</li>
-                      <li>Experimentation: Push yourself to explore beyond your comfort zone. For each project, include at least one technique or approach that's new to you.</li>
-                      <li>Communication: Consider your audience more actively. Ask yourself "What does my viewer need to know?" and ensure your presentation addresses this.</li>
-                      <li>Development: Set specific learning goals for each project. Reflect on what you've achieved and what you still need to work on in your documentation.</li>
-                      <li>Process: Improve your documentation to show a clear journey from research through development to final outcomes. Make connections between these stages explicit.</li>
-                   </div>
-                  )}
-                  {activeGrade === 'lower-second' && (
-                    <div>
-                      <li>Research: Find connections between different sources and your own ideas. Look for patterns, contradictions, or gaps that your work could address.</li>
-                      <li>Experimentation: Take more creative risks in your development work. Document your decision-making process, explaining why you chose certain directions over others.</li>
-                      <li>Communication: Refine your presentation skills to appear more professional. Consider how layout, typography, and visual hierarchy enhance understanding of your work.</li>
-                      <li>Development: Be more self-critical in your reflection. Identify specific strengths in your work and areas where you'd like to develop further expertise.</li>
-                      <li>Process: Demonstrate deeper engagement with feedback. Show how you've applied previous feedback to improve current work.</li>
-                      </div>
-                  )}
-                  {activeGrade === 'upper-second' && (
-                    <div>
-                      <li>Research: Seek out specialized or unusual sources that others might not find. Begin to develop a more personal research methodology that reflects your interests.</li>
-                      <li>Experimentation: Demonstrate more sophisticated analysis of your own experiments. Evaluate which approaches are most effective and explain why.</li>
-                      <li>Communication: Consider subtlety and nuance in your presentations. Refine your visual and verbal language to communicate more complex ideas effectively.</li>
-                      <li>Development: Show greater independence in directing your own learning. Identify specific skills or knowledge areas to develop that align with your career goals.</li>
-                      <li>Process: Connect your work to wider contexts. Show awareness of how your practice relates to contemporary issues or practices in the field.</li>
-                    </div>
-                  )}
-                  {activeGrade === 'first' && (
-                    <div>
-                      <li>Research: Develop original insights that contribute something new to the discussion. Synthesize diverse sources into a distinctive personal perspective.</li>
-                      <li>Experimentation: Take well-calculated risks that push boundaries while maintaining professional quality. Demonstrate mastery of techniques while still innovating.</li>
-                      <li>Communication: Perfect every aspect of your presentation to professional standards. Consider subtle details that elevate your work beyond expectations.</li>
-                      <li>Development: Show evidence of going beyond module requirements to pursue deeper understanding. Demonstrate exceptional commitment to your development.</li>
-                      <li>Process: Develop a distinctive voice or approach that sets your work apart. Show how your personal perspective enriches your fashion practice.</li>
-                    </div>
-                  )}
-                  {activeGrade === 'first-plus' && (
-                    <div>
-                      <li>You're already achieving at the highest level! To maintain this standard:</li>
-                      <li>Continue pursuing innovative research and pushing boundaries in your practice</li>
-                      <li>Maintain the exceptional standards you've established across all aspects of your work</li>
-                      <li>Consider how you can share your expertise to support the learning community</li>
-                      <li>Begin thinking about how your outstanding work might translate to professional opportunities</li>
-                    </div>
-                  )}
-                </ul>
-              </div>
-              
-              <div className="mt-6 p-3 bg-gray-100 border-l-4 border-[#FFF200] text-sm text-gray-700">
-                <p>Note: This is a visual interpretation of the Kingston School of Art BA (Hons) Fashion grade descriptors. Always refer to the official grade descriptors in your course handbook for definitive guidance.</p>
-              </div>
-              
-              <div className="mt-6">
-                <button className="ku-button" onClick={() => setShowMatrix(true)}>Complete Grading Matrix</button>
-                <a className="ku-button ml-4" href="https://canvas.kingston.ac.uk/courses/8255/pages/7-fairness-in-assessment" target="_blank">Fairness in Assessment</a>
-                <a className="ku-button ml-4" href="https://canvas.kingston.ac.uk/courses/32501" title="Back to Module Home Page">Back to Module Home Page</a>
-              </div>
-              
-              {/* Grading Matrix Modal */}
-              {showMatrix && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-                  <div className="bg-white p-6 rounded-none max-w-4xl max-h-[90vh] overflow-auto">
-                    <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-xl font-bold">Complete Grading Matrix</h3>
-                      <button 
-                        onClick={() => setShowMatrix(false)}
-                        className="text-gray-600 hover:text-gray-900 text-2xl font-medium"
-                      >
-                        &times;
-                      </button>
-                    </div>
-                    
-                    <div className="mb-4 p-4 bg-gray-50 rounded-none border border-gray-200">
-                      <h4 className="font-bold mb-2">Learning Outcomes & Assessment Criteria</h4>
-                      <p className="mb-2">Each criterion in the matrix relates to one of the 4 program learning outcomes:</p>
-                      <ol className="list-decimal pl-5">
-                        <li><strong>Research and Analysis:</strong> Critical examination of context and interpretation of sources</li>
-                        <li><strong>Experimentation and Practice:</strong> Testing of subject, thinking through making, technique, risk taking and problem solving</li>
-                        <li><strong>Communication and Presentation:</strong> Realisation of intentions and skill in appropriate media with awareness of audience needs</li>
-                        <li><strong>Personal and Professional Development:</strong> Planning, time-management, commitment & subject engagement</li>
-                      </ol>
-                    </div>
-                    
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full">
-                        <thead>
-                          <tr>
-                            <th>Criteria</th>
-                            {matrixGrades.map((grade) => (
-                              <th 
+            const [activeGrade, setActiveGrade] = useState('first-plus');
+            const [showMatrix, setShowMatrix] = useState(false);
+            
+            // Grade data
+            const grades = [
+                {
+                    id: 'first-plus',
+                    title: 'Distinction',
+                    range: '85% and above',
+                    colorClass: 'grade-distinction',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for exceptional research that goes far beyond expectations. You should demonstrate original thinking and provide strong evidence to support your ideas. Your work should show deep understanding of relevant contexts and critically analyze sources with comprehensive evidence.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see innovative approaches that challenge conventional thinking. Your technical skills should be excellent, with clear evidence of creative risk-taking and problem-solving. Your work should show a strong connection between concept development and making/production techniques.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect extremely clear and professional presentation that convincingly communicates your ideas. Your work should show you understand your audience\'s needs and have carefully selected and refined your materials to create maximum impact.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you can integrate your personal identity into your professional practice. You should demonstrate that you can work productively on your own, collaborate effectively in teams, and take leadership roles when needed. You should take full responsibility for your own learning and development.' }
+                    ]
+                },
+                {
+                    id: 'first',
+                    title: 'First Class',
+                    range: '70-84%',
+                    colorClass: 'grade-first',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for extensive, well-informed research from diverse sources. You should demonstrate independent thinking in how you analyze your findings. Your work should show strong critical examination of relevant contexts with clear evaluation of sources.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see how you connect your ideas with strong technical skills to explore unfamiliar concepts. You should demonstrate creative risk-taking and show how your critical evaluation has informed your design decisions. Your technical execution should be excellent.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect your work to engage and persuade your audience effectively. You should demonstrate sensitivity in how you select and present your materials. Your presentation should show a clear understanding of audience needs and contextual factors.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you take full responsibility for your learning and understand both the possibilities and requirements of your subject. You should demonstrate that you can work effectively independently, as part of a team, or in leadership roles.' }
+                    ]
+                },
+                {
+                    id: 'upper-second',
+                    title: 'Upper Second (2:1)',
+                    range: '60-69%',
+                    colorClass: 'grade-upper-second',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for wide-ranging research from good quality sources. You should demonstrate some independent thinking in your analysis. Your work should show accurate evaluation of relevant contexts and sources with clear personal insights.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see evidence that you\'re willing to take creative risks and use your own critical evaluation to inform your process and technique. Your technical skills should be consistently applied and show good proficiency.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect your presentation to show good awareness of audience and context. You should demonstrate good judgment in how you select and organize your materials, following appropriate conventions while adding your personal touch.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence of self-directed reflection and planning in your work. You should show that you understand the possibilities within your subject area and can work well either independently or collaboratively.' }
+                    ]
+                },
+                {
+                    id: 'lower-second',
+                    title: 'Lower Second (2:2)',
+                    range: '50-59%',
+                    colorClass: 'grade-lower-second',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for accurate and appropriate research covering the key elements of your project. Your analysis of context and interpretation of sources should be mostly accurate, though may have some gaps or inconsistencies.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see that you\'ve explored different materials and processes in your work. Your technical skills should be consistently applied, with some evidence that you\'ve critically evaluated your own work during the process.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect your work to be presented with good organization and a clear structure, though it may not always fully consider the audience. You should show good judgment in selecting and organizing materials to present your ideas.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you\'re actively working to develop your understanding and using reflection to improve your work. You should demonstrate that you can work productively either alone or as part of a team.' }
+                    ]
+                },
+                {
+                    id: 'third',
+                    title: 'Third Class',
+                    range: '40-49%',
+                    colorClass: 'grade-third',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for research from standard sources that covers the basics of your topic. You should show basic knowledge and understanding of required skills, though your interpretation may not always be accurate or in-depth.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see that you can work with established ideas, materials, and processes. Your technical skills should be adequate, though they may not always be consistently applied throughout your work.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect adequate presentation that follows established conventions, though it may lack professional polish. Your work should communicate basic ideas but might not fully engage the audience.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for some awareness of your subject area and your personal strengths, though your reflection and planning may not be consistently applied. You should be able to work either independently or collaboratively.' }
+                    ]
+                },
+                {
+                    id: 'marginal-fail',
+                    title: 'Marginal Fail',
+                    range: '35-39%',
+                    colorClass: 'grade-marginal-fail',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors are looking for more source information than is currently evidenced in your work. You need to show greater knowledge and understanding of the required skills and practices for this level of study.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors want to see more evidence of technique and exploration of alternatives. Your methods need to be more accurate and appropriate to solve even straightforward problems in your work.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors expect more effective use of media and communication conventions in presenting your ideas. Your presentation skills need development to meet the requirements for this level of study.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors are looking for more awareness of your subject and personal strengths. You need to show more evidence of reflection, planning, and application. Your ability to work productively individually or in a team needs further development.' }
+                    ]
+                },
+                {
+                    id: 'fail',
+                    title: 'Fail',
+                    range: '0-34%',
+                    colorClass: 'grade-fail',
+                    qualities: [
+                        { title: 'Research & Analysis', description: 'Your tutors need to see evidence of source information in your work. You must demonstrate knowledge and understanding of the required skills and practices for this level of study.' },
+                        { title: 'Experimentation & Practice', description: 'Your tutors expect to see evidence of technical skills and exploration of alternatives. You need to demonstrate adequate application of methods to meet basic requirements.' },
+                        { title: 'Communication & Presentation', description: 'Your tutors require effective use of media and communication conventions in presenting your ideas. Your presentation skills must meet minimum requirements for this level of study.' },
+                        { title: 'Personal & Professional Development', description: 'Your tutors need to see evidence of awareness of your subject area and personal strengths. You must demonstrate some reflection, planning, and application, and show that you can work productively either individually or in a team.' }
+                    ]
+                }
+            ];
+            
+            const activeGradeData = grades.find(grade => grade.id === activeGrade);
+            
+            // Helper function for improvement tips
+            const getImprovementTips = (gradeId) => {
+                switch (gradeId) {
+                    case 'fail':
+                        return [
+                            "Research: Start gathering information from reliable sources and include these references in your work. Build basic knowledge of key concepts and practices.",
+                            "Experimentation: Try different approaches and techniques rather than sticking with one method. Document your process, even when things don't work out.",
+                            "Communication: Focus on basic presentation skills—clean layouts, clear labels, and organized materials. Follow basic formatting guidelines for all submissions.",
+                            "Development: Attend all sessions and demonstrate engagement with feedback. Show that you're trying to apply advice from tutors in your revised work.",
+                            "Process: Keep a simple reflective journal documenting what you're learning and areas you find challenging."
+                        ];
+                    case 'marginal-fail':
+                        return [
+                            "Research: Expand your sources beyond the most obvious ones. For each project, aim to find at least 3-5 different references and explain why they're relevant.",
+                            "Experimentation: Demonstrate that you've tried multiple approaches before settling on a final direction. Show "what if" explorations in your development work.",
+                            "Communication: Improve the consistency and professionalism of your presentations. Pay attention to details like typography, layout, and image quality.",
+                            "Development: Begin to analyze your own strengths and weaknesses. Create simple action plans that show how you're addressing areas that need improvement.",
+                            "Process: Show evidence of planning and time management. Include research, development, and refinement stages in your project timeline."
+                        ];
+                    case 'third':
+                        return [
+                            "Research: Move beyond describing your sources to analyzing them. Ask questions like "Why is this relevant?" and "How does this connect to my project?"",
+                            "Experimentation: Push yourself to explore beyond your comfort zone. For each project, include at least one technique or approach that's new to you.",
+                            "Communication: Consider your audience more actively. Ask yourself "What does my viewer need to know?" and ensure your presentation addresses this.",
+                            "Development: Set specific learning goals for each project. Reflect on what you've achieved and what you still need to work on in your documentation.",
+                            "Process: Improve your documentation to show a clear journey from research through development to final outcomes. Make connections between these stages explicit."
+                        ];
+                    case 'lower-second':
+                        return [
+                            "Research: Find connections between different sources and your own ideas. Look for patterns, contradictions, or gaps that your work could address.",
+                            "Experimentation: Take more creative risks in your development work. Document your decision-making process, explaining why you chose certain directions over others.",
+                            "Communication: Refine your presentation skills to appear more professional. Consider how layout, typography, and visual hierarchy enhance understanding of your work.",
+                            "Development: Be more self-critical in your reflection. Identify specific strengths in your work and areas where you'd like to develop further expertise.",
+                            "Process: Demonstrate deeper engagement with feedback. Show how you've applied previous feedback to improve current work."
+                        ];
+                    case 'upper-second':
+                        return [
+                            "Research: Seek out specialized or unusual sources that others might not find. Begin to develop a more personal research methodology that reflects your interests.",
+                            "Experimentation: Demonstrate more sophisticated analysis of your own experiments. Evaluate which approaches are most effective and explain why.",
+                            "Communication: Consider subtlety and nuance in your presentations. Refine your visual and verbal language to communicate more complex ideas effectively.",
+                            "Development: Show greater independence in directing your own learning. Identify specific skills or knowledge areas to develop that align with your career goals.",
+                            "Process: Connect your work to wider contexts. Show awareness of how your practice relates to contemporary issues or practices in the field."
+                        ];
+                    case 'first':
+                        return [
+                            "Research: Develop original insights that contribute something new to the discussion. Synthesize diverse sources into a distinctive personal perspective.",
+                            "Experimentation: Take well-calculated risks that push boundaries while maintaining professional quality. Demonstrate mastery of techniques while still innovating.",
+                            "Communication: Perfect every aspect of your presentation to professional standards. Consider subtle details that elevate your work beyond expectations.",
+                            "Development: Show evidence of going beyond module requirements to pursue deeper understanding. Demonstrate exceptional commitment to your development.",
+                            "Process: Develop a distinctive voice or approach that sets your work apart. Show how your personal perspective enriches your fashion practice."
+                        ];
+                    case 'first-plus':
+                        return [
+                            "You're already achieving at the highest level! To maintain this standard:",
+                            "Continue pursuing innovative research and pushing boundaries in your practice",
+                            "Maintain the exceptional standards you've established across all aspects of your work",
+                            "Consider how you can share your expertise to support the learning community",
+                            "Begin thinking about how your outstanding work might translate to professional opportunities"
+                        ];
+                    default:
+                        return [];
+                }
+            };
+            
+            // Get quality description based on gradeId
+            const getQualityRating = (gradeId) => {
+                switch (gradeId) {
+                    case 'first-plus': return 'Outstanding';
+                    case 'first': return 'Excellent';
+                    case 'upper-second': return 'Very Good';
+                    case 'lower-second': return 'Good';
+                    case 'third': return 'Satisfactory';
+                    case 'marginal-fail': return 'Unsatisfactory';
+                    case 'fail': return 'Poor';
+                    default: return '';
+                }
+            };
+            
+            // Toggle matrix visibility
+            const toggleMatrix = () => {
+                setShowMatrix(!showMatrix);
+            };
+            
+            return (
+                <div>
+                    {/* Grade selection buttons */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '24px' }}>
+                        {grades.map(grade => (
+                            <button
                                 key={grade.id}
-                                className={`${grade.color} ${grade.textColor}`}
-                              >
-                                {grade.title} ({grade.range})
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Research & Analysis</th>
-                            <td>Exceptional levels of research and synthesis. Original and convincing interpretation.</td>
-                            <td>Extensive research, independent synthesis and evaluation.</td>
-                            <td>Wide ranging and well-informed research and accurate evaluation.</td>
-                            <td>Accurate and appropriate research of elements.</td>
-                            <td>Adequate range from standard sources. May lack accurate interpretation</td>
-                            <td>Limited source information evidenced.</td>
-                            <td>Little or no source information evidenced.</td>
-                          </tr>
-                          <tr>
-                            <th>Experimentation & Practice</th>
-                            <td>Excellent conceptual exploration and technical skills used to innovate and challenge convention.</td>
-                            <td>Unified ideas and technical skills in realisation of unfamiliar concepts with evidence of critical judgement.</td>
-                            <td>Evidence of conceptual risk taking and the use of personal critical evaluation to inform process and technique.</td>
-                            <td>Evidence of exploration of materials and process. Technical procedures used consistently.</td>
-                            <td>Operates within well-established ideas and processes. Adequate skills.</td>
-                            <td>Very limited technique or exploration of alternatives.</td>
-                            <td>Little or no technique or exploration of alternatives.</td>
-                          </tr>
-                          <tr>
-                            <th>Communication & Presentation</th>
-                            <td>Extremely clear, detailed and convincing realisation and presentation showing critical understanding of audience.</td>
-                            <td>Sensitivity evident in origination and selection of material. Persuasive and convincing engagement of audience.</td>
-                            <td>Selection, organisation and presentation shows very good awareness of audience and context.</td>
-                            <td>Good judgement evident in selection and organisation of materials and conventions.</td>
-                            <td>Adequate standards applied with clear structure though may lack awareness of audience.</td>
-                            <td>Very limited use of media and communication conventions in presenting ideas.</td>
-                            <td>Ineffective use of media and communication conventions in presenting ideas.</td>
-                          </tr>
-                          <tr>
-                            <th>Personal & Professional Development</th>
-                            <td>Integration of own identity in real or simulated work/subject contexts. Can work highly productively individually, in a team or in a leadership role.</td>
-                            <td>Takes full responsibility for own learning understanding subject possibilities and requirements. Can work comfortably independently, in a team or as a leader.</td>
-                            <td>Self-directed reflection and planning process clearly evidenced in the development of work and context of subject possibilities. Works well alone or in a collaborative team.</td>
-                            <td>Actively working to develop understanding of subject and use process of reflection and effective planning to improve work. Productive working alone or in a team.</td>
-                            <td>Evidence in awareness of subject and strengths, may lack consistency in applying reflection and planning. Able to work alone or collaboratively.</td>
-                            <td>Limited awareness of subject, personal strengths or evidence of reflection or planning and application.</td>
-                            <td>Little or no awareness of subject, personal strengths or evidence of reflection or planning and application.</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                                className={`grade-btn ${grade.colorClass} ${activeGrade === grade.id ? 'active' : ''}`}
+                                onClick={() => setActiveGrade(grade.id)}
+                            >
+                                {grade.range}
+                            </button>
+                        ))}
                     </div>
                     
-                    <div className="mt-4 text-center">
-                      <button 
-                        className="ku-button"
-                        onClick={() => setShowMatrix(false)}
-                      >
-                        Close
-                      </button>
+                    {/* Active grade header */}
+                    <div className={`grade-detail ${activeGradeData.colorClass}`}>
+                        <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '8px' }}>
+                            {activeGradeData.title} ({activeGradeData.range})
+                        </h2>
+                        <p style={{ fontSize: '1.125rem', marginBottom: '16px' }}>
+                            Overall Quality: {getQualityRating(activeGrade)}
+                        </p>
                     </div>
-                  </div>
+                    
+                    {/* Assessment criteria table */}
+                    <table>
+                        <caption>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '8px' }}>Assessment Criteria</h3>
+                        </caption>
+                        <tbody>
+                            {activeGradeData.qualities.map((quality, index) => (
+                                <tr key={index}>
+                                    <th style={{ width: '25%' }}>{quality.title}</th>
+                                    <td>{quality.description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    
+                    {/* Improvement tips */}
+                    <div className="improvements">
+                        <h3 style={{ fontWeight: 'bold', marginBottom: '8px' }}>How to move up to the next grade band:</h3>
+                        <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                            {getImprovementTips(activeGrade).map((tip, index) => (
+                                <li key={index} style={{ marginBottom: '8px' }}>{tip}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    
+                    {/* Note */}
+                    <div className="note">
+                        <p>Note: This is a visual interpretation of the Kingston School of Art BA (Hons) Fashion grade descriptors. Always refer to the official grade descriptors in your course handbook for definitive guidance.</p>
+                    </div>
+                    
+                    {/* Buttons */}
+                    <div style={{ marginTop: '24px' }}>
+                        <button className="ku-button" onClick={toggleMatrix}>Complete Grading Matrix</button>
+                        <a className="ku-button" href="https://canvas.kingston.ac.uk/courses/8255/pages/7-fairness-in-assessment" target="_blank" rel="noopener">Fairness in Assessment</a>
+                        <a className="ku-button" href="https://canvas.kingston.ac.uk/courses/32501" title="Back to Module Home Page">Back to Module Home Page</a>
+                    </div>
+                    
+                    {/* Matrix Modal */}
+                    {showMatrix && (
+                        <div className="matrix-modal" style={{ display: 'flex' }}>
+                            <div className="modal-content">
+                                <button className="close-btn" onClick={toggleMatrix}>&times;</button>
+                                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '16px' }}>Complete Grading Matrix</h3>
+                                
+                                <div style={{ marginBottom: '16px', padding: '16px', backgroundColor: '#f9f9f9', border: '1px solid #ddd' }}>
+                                    <h4 style={{ fontWeight: 'bold', marginBottom: '8px' }}>Learning Outcomes & Assessment Criteria</h4>
+                                    <p style={{ marginBottom: '8px' }}>Each criterion in the matrix relates to one of the 4 program learning outcomes:</p>
+                                    <ol style={{ listStyleType: 'decimal', paddingLeft: '20px' }}>
+                                        <li><strong>Research and Analysis:</strong> Critical examination of context and interpretation of sources</li>
+                                        <li><strong>Experimentation and Practice:</strong> Testing of subject, thinking through making, technique, risk taking and problem solving</li>
+                                        <li><strong>Communication and Presentation:</strong> Realisation of intentions and skill in appropriate media with awareness of audience needs</li>
+                                        <li><strong>Personal and Professional Development:</strong> Planning, time-management, commitment & subject engagement</li>
+                                    </ol>
+                                </div>
+                                
+                                <div style={{ overflowX: 'auto' }}>
+                                    <table style={{ minWidth: '100%' }}>
+                                        <thead>
+                                            <tr>
+                                                <th>Criteria</th>
+                                                <th className="grade-distinction">Distinction (85%+)</th>
+                                                <th className="grade-first">First (70-84%)</th>
+                                                <th className="grade-upper-second">2:1 (60-69%)</th>
+                                                <th className="grade-lower-second">2:2 (50-59%)</th>
+                                                <th className="grade-third">Third (40-49%)</th>
+                                                <th className="grade-marginal-fail">Marginal Fail (35-39%)</th>
+                                                <th className="grade-fail">Fail (0-34%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Research & Analysis</th>
+                                                <td>Exceptional levels of research and synthesis. Original interpretation.</td>
+                                                <td>Extensive research, independent synthesis and evaluation.</td>
+                                                <td>Wide ranging and well-informed research and accurate evaluation.</td>
+                                                <td>Accurate and appropriate research of elements.</td>
+                                                <td>Adequate range from standard sources.</td>
+                                                <td>Limited source information evidenced.</td>
+                                                <td>Little or no source information evidenced.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Experimentation & Practice</th>
+                                                <td>Excellent conceptual exploration and technical skills to innovate.</td>
+                                                <td>Unified ideas and technical skills with critical judgement.</td>
+                                                <td>Evidence of conceptual risk taking and personal evaluation.</td>
+                                                <td>Evidence of exploration of materials and process.</td>
+                                                <td>Operates within well-established ideas and processes.</td>
+                                                <td>Very limited technique or exploration of alternatives.</td>
+                                                <td>Poor technical skills with inadequate methods.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Communication & Presentation</th>
+                                                <td>Extremely clear, detailed and convincing presentation.</td>
+                                                <td>Persuasive and convincing engagement of audience.</td>
+                                                <td>Very good awareness of audience and context.</td>
+                                                <td>Good judgement in organization of materials.</td>
+                                                <td>Adequate presentation but may lack professionalism.</td>
+                                                <td>Presentation skills not sufficient for this level.</td>
+                                                <td>Poor presentation skills that don't meet requirements.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Personal & Professional Development</th>
+                                                <td>Integration of identity in real contexts. Highly productive.</td>
+                                                <td>Takes full responsibility for learning. Works in all roles.</td>
+                                                <td>Self-directed reflection and planning process.</td>
+                                                <td>Actively working to develop understanding.</td>
+                                                <td>Evidence of awareness of subject and strengths.</td>
+                                                <td>Little evidence of reflection or planning.</td>
+                                                <td>No awareness of subject or ability to work productively.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div style={{ marginTop: '24px', textAlign: 'center' }}>
+                                    <button className="ku-button" onClick={toggleMatrix}>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-              )}
-            </div>
-          );
+            );
         };
         
         // Render the app
         ReactDOM.render(<GradeDescriptors />, document.getElementById('grade-descriptors-app'));
+    </script>
+
+    <!-- Fallback script in case the Babel transformation fails -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if React has rendered our content
+            setTimeout(function() {
+                const appContainer = document.getElementById('grade-descriptors-app');
+                if (appContainer && appContainer.children.length <= 1 && appContainer.textContent.includes('Loading')) {
+                    appContainer.innerHTML = `
+                        <div style="padding: 20px; text-align: center;">
+                            <p>The interactive grade descriptors tool could not be loaded.</p>
+                            <p style="margin-top: 10px;">Please visit the <a href="https://canvas.kingston.ac.uk/courses/32501" style="color: #0066cc; text-decoration: underline;">module home page</a> to access this content.</p>
+                        </div>
+                    `;
+                }
+            }, 2000); // Give React 2 seconds to render
+        });
     </script>
 </body>
 </html>
