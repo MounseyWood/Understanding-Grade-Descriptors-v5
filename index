@@ -70,6 +70,8 @@ Copyright (c) 2025 Kingston University. All rights reserved.
         */
         body {
             font-family: Inter, sans-serif; /* CUSTOMIZE: Font family */
+            ms-text-size-adjust: 100%;
+            webkit-text-size-adjust: 100%;
             background-color: #ffffff; /* CUSTOMIZE: Main background colour */
             padding: 0;
             margin: 0;
