@@ -701,4 +701,97 @@
         
         // Update improvement list
         function updateImprovementList() {
-            const activeGrade
+            const activeGrade = grades.find(grade => grade.id === activeGradeId);
+            improvementListContainer.innerHTML = '';
+            
+            activeGrade.improvements.forEach(improvement => {
+                const li = document.createElement('li');
+                li.textContent = improvement;
+                improvementListContainer.appendChild(li);
+            });
+        }
+        
+        // Create matrix table
+        function createMatrixTable() {
+            // Create table header
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            matrixData.headers.forEach((header, index) => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                
+                // Add color classes to grade columns (skip the first which is the criteria column)
+                if (index > 0) {
+                    const gradeId = grades[index - 1].id;
+                    th.className = grades[index - 1].colorClass;
+                }
+                
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            matrixTable.appendChild(thead);
+            
+            // Create table body
+            const tbody = document.createElement('tbody');
+            
+            matrixData.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                
+                // Add row header (criteria title)
+                const th = document.createElement('th');
+                th.textContent = row.title;
+                tr.appendChild(th);
+                
+                // Add cells
+                row.cells.forEach((cell, index) => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    
+                    // Add color classes to cells
+                    if (index < grades.length) {
+                        td.className = grades[index].colorClass;
+                    }
+                    
+                    tr.appendChild(td);
+                });
+                
+                tbody.appendChild(tr);
+            });
+            
+            matrixTable.appendChild(tbody);
+        }
+        
+        // Toggle matrix modal
+        function toggleMatrix() {
+            if (matrixModal.style.display === 'block') {
+                matrixModal.style.display = 'none';
+            } else {
+                matrixModal.style.display = 'block';
+            }
+        }
+        
+        // Initialize the app
+        function initializeApp() {
+            createGradeButtons();
+            updateGradeDetail();
+            updateCriteriaTable();
+            updateImprovementList();
+            createMatrixTable();
+            
+            // Add event listeners for matrix modal
+            matrixButton.addEventListener('click', toggleMatrix);
+            closeMatrixButton.addEventListener('click', toggleMatrix);
+            closeMatrixBtn.addEventListener('click', toggleMatrix);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === matrixModal) {
+                    toggleMatrix();
+                }
+            });
+        }
+        
+        // Run the app
+        document.addEventListener('DOMContentLoaded', initializeApp);
